@@ -1,0 +1,28 @@
+.page-title {
+  text-align: center;
+  font-size: 50px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 0.5px solid white;
+  padding-bottom: 50px;
+}
+
+.text-box {
+  width: 350px;
+  height: 20px;
+}
+
+.hero-image {
+  padding: 50px;
+  width: "600px";
+  height: "auto";
+}
+
+.footer {
+  padding-top: 30px;
+  text-align: center;
+}

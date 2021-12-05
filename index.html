@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>Morse Code Translator</title>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1 class="page-title">Morse Code Translator</h1>
+      </header>
+      <div class="container">
+        <div>
+          <form class="form" id="inputEnglish">
+            <div>
+              <h2>Encrypt your text here</h2>
+              <input
+                type="text"
+                placeholder="Enter Your Text Here"
+                id="inputBoxText"
+                class="text-box"
+              />
+            </div>
+            <div>
+              <button type="button" id="translateEnglishButton">
+                Translate
+              </button>
+            </div>
+            <div id="morseOutputBox">
+              <input type="text" id="outputBoxMorse" class="text-box" />
+            </div>
+          </form>
+        </div>
+
+        <br />
+
+        <div>
+          <form class="form" id="inputMorse">
+            <div>
+              <h2>Decrypt your code here</h2>
+              <input
+                type="text"
+                placeholder="Enter Your Morse Code"
+                id="inputBoxMorse"
+                class="text-box"
+              />
+            </div>
+            <div>
+              <button type="button" id="translateMorseButton">Translate</button>
+            </div>
+            <div id="englishOutput">
+              <input type="text" id="outputBoxText" class="text-box" />
+            </div>
+          </form>
+        </div>
+      </div>
+      <div>
+        <img
+          src="css\img\morse-code-chart.jpg"
+          id="hero-img"
+          alt="morse code chart"
+        />
+      </div>
+      <div class="about-section">
+        <h1>What is Morse Code?</h1>
+        <p>
+          Morse Code is a character encoding scheme that allows operators to
+          send messages using a series of electrical pulses represented as short
+          or long pulses, dots, and dashes in other words.
+        </p>
+
+        <h1>Who Invented Morse Code?</h1>
+        <p>
+          Samuel F. B. Morse and his assistant Alfred Vail are known as the
+          inventors of the Morse code.
+        </p>
+
+        <h1>When Was Morse Code Invented?</h1>
+        <p>Morse code developed in the 1830s then advanced in the 1840s.</p>
+
+        <h1>When Was Morse Code Patented?</h1>
+        <p>
+          Samuel Morse received a U.S. patent, US1647A, for dot-dash telegraphy
+          signals on June 20, 1840. On the other hand, some sources claim that
+          Samuel Morse received a patent issued by an Ottoman Sultan, Abdulmejid
+          I, for Morse Code. However, according to Cyrus Hamlin’s memoirs and
+          The New York Times obituary published on April 3, 1872, Samuel Morse
+          received not a patent, but an order of the Ottoman Empire, Order of
+          Glory, instead.
+        </p>
+      </div>
+      <footer class="footer">
+        © <span id="year"></span> created by Samantha Lippiatt
+      </footer>
+      <script>
+        // Dynamically show the current year
+        const year = (document.getElementById("year").innerHTML =
+          new Date().getFullYear());
+      </script>
+      <script type="module" src=""></script>
+      <script src="js/translator.js"></script>
+    </main>
+  </body>
+</html>

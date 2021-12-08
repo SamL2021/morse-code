@@ -3,16 +3,15 @@ import { alphabet, morse } from "./data.js";
 // *** Translate to Morse Code from English
 
 export const toMorseCode = (input, object) => {
-    // if (typeof input != "string" || typeof input != "number")
-    //   return "Letters and numbers only please, cannot translate other characters";
+    //   // if (typeof input != "string" || typeof input != "number")
+    //   //   return "Letters and numbers only please, cannot translate other characters";
+    //   // throw an error or [], {}, any other characters
+    //   // allow : ".!/", Matches any character that is not a word character from the basic Latin alphabet /[^A-Za-z0-9_]/
 
-    // throw an error or [], {}, any other characters
-
-    const inputUpperCase = input.toUpperCase().split(""); // take input and make uppercase then split each letter
-    return inputUpperCase
-        .map((character) => {
-            return object[character] ? object[character] : character;
-        })
+    return input
+        .toUpperCase() // take input and make uppercase
+        .split("") // then split each letter
+        .map((character) => object[character]) // encode character
         .join(" "); // Keep space between characters
 };
 
@@ -29,7 +28,7 @@ export const toEnglish = (input, object) => {
         .map((word) =>
             word
                 .split(" ") // get character code 1 spaces apart
-                .map((character) => object[character]) // decode Morse code character
+                .map((character) => object[character]) // decode character
                 .join("")
         )
         .join(" ") // add spaces between words

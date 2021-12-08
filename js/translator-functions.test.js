@@ -5,45 +5,45 @@ import { toMorseCode, toEnglish } from "./translator-functions.js";
 
 describe("Testing toMorseCode()", () => {
     it("Should accept lowercase letters and return '...'", () => {
-        expect(toMorseCode("s", morse)).toBe("...");
-        expect(toMorseCode("sam", morse)).toBe("... .- --");
+        expect(toMorseCode("s", alphabet)).toBe("...");
+        expect(toMorseCode("sam", alphabet)).toBe("... .- --");
     });
 
     it("Should accept uppercase letters and return '...'", () => {
-        expect(toMorseCode("S", morse)).toBe("...");
-        expect(toMorseCode("SAM", morse)).toBe("... .- --");
+        expect(toMorseCode("S", alphabet)).toBe("...");
+        expect(toMorseCode("SAM", alphabet)).toBe("... .- --");
     });
 
     it("Should accept a '3' or number 2 and return '...--'", () => {
-        expect(toMorseCode("3", morse)).toBe("...--");
-        expect(toMorseCode(3, morse)).toBe("....--");
-        expect(toMorseCode("6", morse)).toBe("-....");
+        expect(toMorseCode("3", alphabet)).toBe("...--");
+        // expect(toMorseCode(3, alphabet)).toBe("....--");
+        expect(toMorseCode("6", alphabet)).toBe("-....");
     });
 
     it("Should accept punctuation such as '!' and return '·-·--'", () => {
-        expect(toMorseCode("!", morse)).toBe("·-·--");
-        expect(toMorseCode(",", morse)).toBe("--··--");
+        expect(toMorseCode("!", alphabet)).toBe("-·-·--");
+        expect(toMorseCode(",", alphabet)).toBe("--··--");
     });
 
     it("Any other character apart from letters and numbers should throw an error 'Not a valid entry'", () => {
-        expect(toMorseCode([], morse)).toThrow(
+        expect(toMorseCode([], alphabet)).toThrow(
             "Invalid characters included, cannot translate. Please only include letters and numbers."
         );
-        expect(toMorseCode("?", morse)).toThrow(
+        expect(toMorseCode("?", alphabet)).toThrow(
             "Invalid characters included, cannot translate. Please only include letters and numbers."
         );
-        expect(toMorseCode({}, morse)).toThrow(
+        expect(toMorseCode({}, alphabet)).toThrow(
             "Invalid data type entered. Please only enter string or number."
         );
     });
 
     it("Should split morse code with 1 space between characters and seperate words with '/'", () => {
         expect(
-            toMorseCode("SAMANTHA LIPPIATT", morse).toBe(
+            toMorseCode("SAMANTHA LIPPIATT", alphabet).toBe(
                 "... .- -- .- -. - .... .- / .-.. .. .--. .--. .. .- - -"
             )
         );
-        expect(toMorseCode("JS IS AWESOME!", morse)).toBe(
+        expect(toMorseCode("JS IS AWESOME!", alphabet)).toBe(
             ".--- ... / .. ... / .- .-- . ... --- -- . -.-.--"
         );
     });
@@ -52,21 +52,21 @@ describe("Testing toMorseCode()", () => {
 
     describe("Testing toEnglish()", () => {
         it("Should accept '...-' and return 'V'", () => {
-            expect(toEnglish("...-", alphabet)).toBe("V");
+            expect(toEnglish("...-", morse)).toBe("V");
         });
 
         it("Should accept '....-' and return '4'", () => {
-            expect(toEnglish("....-", alphabet)).toBe("4");
+            expect(toEnglish("....-", morse)).toBe("4");
         });
 
         it("Any other character apart from letters and numbers should throw an error 'Not a valid entry'", () => {
-            expect(toEnglish([], alphabet)).toThrow(
+            expect(toEnglish([], morse)).toThrow(
                 "Invalid data type entered. Please only enter morse code"
             );
-            expect(toEnglish("?", alphabet)).toThrow(
+            expect(toEnglish("?", morse)).toThrow(
                 "Invalid data type entered. Please only enter morse code"
             );
-            expect(toEnglish({}, alphabet)).toThrow(
+            expect(toEnglish({}, morse)).toThrow(
                 "Invalid data type entered. Please only enter morse code"
             );
         });
@@ -75,13 +75,13 @@ describe("Testing toMorseCode()", () => {
             expect(
                 toEnglish(
                     "... .- -- .- -. - .... .- / .-.. .. .--. .--. .. .- - -",
-                    alphabet
+                    morse
                 )
             ).toBe("SAMANTHA LIPPIATT");
             expect(
                 toEnglish(
                     ".--- ... / .. ... / .- .-- . ... --- -- . -.-.--",
-                    alphabet
+                    morse
                 ).toBe("JS IS AWESOME!")
             );
         });

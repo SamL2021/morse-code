@@ -1,4 +1,5 @@
 import { toMorseCode, toEnglish } from "./translator-functions.js";
+import { alphabet, morse } from "./data.js";
 
 const inputText = document.getElementById("inputBoxText");
 const inputCode = document.getElementById("inputBoxMorse");

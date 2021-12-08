@@ -11,7 +11,6 @@ describe("Testing toMorseCode()", (x, y) => {
         expect(toMorseCode("SAM", morse)).toBe("... .- --");
     });
 
-
     it("Should accept a '3' or number 2 and return '...--'", (x, y) => {
         expect(toMorseCode("3", morse)).toBe("...--");
         expect(toMorseCode(3, morse)).toBe("....--");
@@ -22,7 +21,6 @@ describe("Testing toMorseCode()", (x, y) => {
         expect(toMorseCode("!", morse)).toBe("·-·--");
         expect(toMorseCode(",", morse)).toBe("--··--");
     });
-
 
     it("Any other character apart from letters and numbers should throw an error 'Not a valid entry'", () => {
         expect(toMorseCode([], morse)).toThrow(
@@ -70,7 +68,7 @@ describe("Testing toMorseCode()", (x, y) => {
             );
         });
 
-        it("Should not accept any other character apart from ([".","-","/"," "]) and throw an error 'Not a valid entry'", () => {
+        it("Should not accept any other character apart from morse code and throw an error 'Not a valid entry'", () => {
             expect(
                 toEnglish("?", alphabet).toThrow(
                     "Invalid characters included, cannot translate."

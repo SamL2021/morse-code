@@ -1,9 +1,11 @@
 import { alphabet, morse } from "./data.js";
 import { toMorseCode, toEnglish } from "./translator-functions.js";
 
+//jestjs.io/docs/expect
+
 // toMorseCode() Testing
 
-describe("Testing toMorseCode()", () => {
+https: describe("Testing toMorseCode()", () => {
     it("Should accept lowercase letters and return '...'", () => {
         expect(toMorseCode("s", alphabet)).toBe("...");
         expect(toMorseCode("sam", alphabet)).toBe("... .- --");
@@ -14,9 +16,8 @@ describe("Testing toMorseCode()", () => {
         expect(toMorseCode("SAM", alphabet)).toBe("... .- --");
     });
 
-    it("Should accept a '3' or number 2 and return '...--'", () => {
+    it("Should accept a '3' and return '...--'", () => {
         expect(toMorseCode("3", alphabet)).toBe("...--");
-        // expect(toMorseCode(3, alphabet)).toBe("....--");
         expect(toMorseCode("6", alphabet)).toBe("-....");
     });
 
@@ -27,13 +28,13 @@ describe("Testing toMorseCode()", () => {
 
     it("Any other character apart from letters and numbers should throw an error 'Not a valid entry'", () => {
         expect(toMorseCode([], alphabet)).toThrow(
-            "Invalid characters included, cannot translate. Please only include letters and numbers."
+            "Cannot translate, enter only letters and numbers."
         );
         expect(toMorseCode("?", alphabet)).toThrow(
-            "Invalid characters included, cannot translate. Please only include letters and numbers."
+            "Cannot translate, enter only letters and numbers."
         );
         expect(toMorseCode({}, alphabet)).toThrow(
-            "Invalid data type entered. Please only enter string or number."
+            "Cannot translate, enter only letters and numbers."
         );
     });
 
@@ -45,6 +46,14 @@ describe("Testing toMorseCode()", () => {
         );
         expect(toMorseCode("JS IS AWESOME!", alphabet)).toBe(
             ".--- ... / .. ... / .- .-- . ... --- -- . -.-.--"
+        );
+    });
+
+    it("Should not translate an empty string", () => {
+        expect(
+            toMorseCode("", alphabet).toThrow(
+                "Cannot translate, enter only letters and numbers."
+            )
         );
     });
 
@@ -61,13 +70,13 @@ describe("Testing toMorseCode()", () => {
 
         it("Any other character apart from letters and numbers should throw an error 'Not a valid entry'", () => {
             expect(toEnglish([], morse)).toThrow(
-                "Invalid data type entered. Please only enter morse code"
+                "Cannot translate, enter morse code only."
             );
             expect(toEnglish("?", morse)).toThrow(
-                "Invalid data type entered. Please only enter morse code"
+                "Cannot translate, enter morse code only."
             );
             expect(toEnglish({}, morse)).toThrow(
-                "Invalid data type entered. Please only enter morse code"
+                "Cannot translate, enter morse code only."
             );
         });
 
@@ -83,6 +92,12 @@ describe("Testing toMorseCode()", () => {
                     ".--- ... / .. ... / .- .-- . ... --- -- . -.-.--",
                     morse
                 ).toBe("JS IS AWESOME!")
+            );
+        });
+
+        it("Not translate an empty string'", () => {
+            expect(toEnglish("", morse)).toThrow(
+                "Cannot translate, enter morse code only."
             );
         });
     });

@@ -2,7 +2,7 @@ import { toMorseCode, toEnglish } from "./translator-functions.js";
 
 const inputText = document.getElementById("inputBoxText");
 const inputCode = document.getElementById("inputBoxMorse");
-const translateToMorsebtn = document.getElementById("translateFromEnglishBtn");
+const translateToMorsebtn = document.getElementById("translateToMorsebtn");
 const translateToEnglishBtn = document.getElementById("translateToEnglishBtn");
 const outputText = document.getElementById("outputBoxText");
 const outputMorse = document.getElementById("outputBoxMorse");

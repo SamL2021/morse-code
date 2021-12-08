@@ -1,45 +1,42 @@
 import { alphabet, morse } from "./data.js";
 
-export const toMorseCode = (input, object) => {
-    // ** input:
-    //  * type string or Number
-    // (typeof input == "string" || typeof input == "number") {
-    // * lowercase and uppercase letters
-    // const inputUpperCase = input.toUpperCase();
-    // * punctuation - how to manage or should exclude?
-    // * throw an error or [], {}, any other characters
-    // hasInvalidCharacters = 0;
-    // return "Please only include letters and numbers, cannot translate other characters";
-    // **output:
-    // * convert to morse, loop over items in input and create new output based on morse
-    // new array, let code [],
-    // * split morse code with /
-    // for (let i = 0; i < uppercaseInput.length; i++) {
-    // if (object[uppercaseInput[i]]) {
-    //   code.push(object[uppercaseInput[i]]);
-    // return code
-    // .split( )
-    // .join(" ")
-    // .replaceAll("   ");
+// *** Translate to Morse Code from English
+
+const toMorseCode = (input, object) => {
+    // if (typeof input != "string" || typeof input != "number")
+    //   return "Letters and numbers only please, cannot translate other characters";
+
+    // throw an error or [], {}, any other characters
+
+  const inputUpperCase = input.toUpperCase().split(""); // take input and make uppercase then split each letter
+  return inputUpperCase
+    .map((character) => {
+      return object[character] ? object[character] : character;
+    })
+    .join(" "); // Keep space between characters
+
 };
 
-export const toEnglish = (input, object) => {};
+// console.log(toMorseCode("Samantha", alphabet)); //    .. .- -- .- -. - .... .-
+// console.log(toMorseCode("JS IS AWESOME", alphabet)); //  .--- ... / .. ... / .- .-- . ... --- -- .
+// console.log(toMorseCode("Magic!", alphabet)); //    -- .- --. .. -.-. -·-·--
 
-// ** input:
-// * throw an error letters, numbers, [], {}, any other characters then dots and dashes .. --
-// hasInvalidCharacters = 0;
-// return "Please only morse code, using dashes and dots and seperating words with /, cannot translate other characters";
+// *** Translate to English from Morse Code
 
-// **output:
-// * convert to English, loop over items in input and create new output based on english
-// new array, let text [],
-// * split words with / forEach((word) => {
-//  const eachWord = word.split("/");
-//  let translatedWord = "";
+const toEnglish = (input, object) => {
+    // throw an error for any other characters than (['/', '-', '.', ' '])
+    return input
+        .split("/") // get words separated
+        .map((word) =>
+            word
+                .split(" ") // get character code 1 spaces apart
+                .map((character) => object[character]) // decode Morse code character
+                .join("")
+        )
+        .join(" ") // add spaces between words
+        .trim(); //removes whitespace from both ends of a string and returns a new string, without modifying the original string
+};
 
-// for (let i = 0; i < .length; i++) {
-// if (object[[i]]) {
-//   text.push(object[[i]]);
-
-// return text
-// translated.push(translatedWord);
+// console.log(toEnglish("... .- -- .- -. - .... .-", morse)); //SAMANTHA
+// console.log(toEnglish(".--- ... / .. ... / .- .-- . ... --- -- .", morse)); //JS IS AWESOME
+// console.log(toEnglish("-- .- --. .. -.-. -·-·--", morse)); //MAGIC!

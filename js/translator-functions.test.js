@@ -1,17 +1,16 @@
 import { alphabet, morse } from "./data.js";
+import { toMorseCode, toEnglish } from "./translator-functions.js";
 
 // toMorseCode() Testing
 
 describe("Testing toMorseCode()", (x, y) => {
-    it("Should accept lowercase letters and return '...'", () => {
+    it("Should accept lowercase and uppercase letters and return '...'", () => {
         expect(toMorseCode("s", morse)).toBe("...");
         expect(toMorseCode("sam", morse)).toBe("... .- --");
-    });
-
-    it("Should accept uppercase letters and return '...'", (x, y) => {
         expect(toMorseCode("S", morse)).toBe("...");
         expect(toMorseCode("SAM", morse)).toBe("... .- --");
     });
+
 
     it("Should accept a '3' or number 2 and return '...--'", (x, y) => {
         expect(toMorseCode("3", morse)).toBe("...--");
@@ -24,25 +23,20 @@ describe("Testing toMorseCode()", (x, y) => {
         expect(toMorseCode(",", morse)).toBe("--··--");
     });
 
-    it("Should accept '[]' and throw an error 'Not a valid entry'", (x, y) => {
-        expect(toMorseCode([], morse)).toThrow(
-            "Invalid data type entered. Please only enter string or number."
-        );
-    });
 
-    it("Should accept '{}' and throw an error 'Not a valid entry'", (x, y) => {
+    it("Any other character apart from letters and numbers should throw an error 'Not a valid entry'", () => {
+        expect(toMorseCode([], morse)).toThrow(
+            "Invalid characters included, cannot translate. Please only include letters and numbers."
+        );
+        expect(toMorseCode("?", morse)).toThrow(
+            "Invalid characters included, cannot translate. Please only include letters and numbers."
+        );
         expect(toMorseCode({}, morse)).toThrow(
             "Invalid data type entered. Please only enter string or number."
         );
     });
 
-    it("Any other character apart from letters and numbers should throw an error 'Not a valid entry'", (x, y) => {
-        expect(toMorseCode("?", morse)).toThrow(
-            "Invalid characters included, cannot translate. Please only include letters and numbers."
-        );
-    });
-
-    it("Should split morse code with 3 spaces between characters and seperate words with '/'", (x, y) => {
+    it("Should split morse code with 1 space between characters and seperate words with '/'", () => {
         expect(
             toMorseCode("SAMANTHA LIPPIATT", morse).toBe(
                 "... .- -- .- -. - .... .- / .-.. .. .--. .--. .. .- - -"
@@ -76,7 +70,7 @@ describe("Testing toMorseCode()", (x, y) => {
             );
         });
 
-        it("Should not accept any other character apart from letters and numbers and throw an error 'Not a valid entry'", () => {
+        it("Should not accept any other character apart from ([".","-","/"," "]) and throw an error 'Not a valid entry'", () => {
             expect(
                 toEnglish("?", alphabet).toThrow(
                     "Invalid characters included, cannot translate."
@@ -84,7 +78,7 @@ describe("Testing toMorseCode()", (x, y) => {
             );
         });
 
-        it("Should preseve spaces between words when converted to text", () => {
+        it("Should have spaces between words when converted to text", () => {
             expect(
                 toEnglish(
                     "... .- -- .- -. - .... .- / .-.. .. .--. .--. .. .- - -",

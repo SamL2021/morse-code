@@ -27,7 +27,7 @@ https: describe("Testing toMorseCode()", () => {
     });
 
     it("Any other character apart from letters and numbers should return msg", () => {
-        expect(() => toMorseCode("{}", alphabet)).toThrow(
+        expect(toMorseCode("{}", alphabet)).toBe(
             "Cannot translate, enter only letters and numbers."
         );
     });
@@ -39,14 +39,6 @@ https: describe("Testing toMorseCode()", () => {
 
         expect(toMorseCode("JS IS AWESOME!", alphabet)).toBe(
             ".--- ... / .. ... / .- .-- . ... --- -- . -.-.--"
-        );
-    });
-
-    it("Should not translate an empty string", () => {
-        expect(() =>
-            toMorseCode("", alphabet).toThrow(
-                "Cannot translate, enter only letters and numbers."
-            )
         );
     });
 
@@ -62,7 +54,7 @@ https: describe("Testing toMorseCode()", () => {
         });
 
         it("Should only accept morse code'", () => {
-            expect(() => toEnglish("S", morse)).toThrow(
+            expect(toEnglish("S", morse)).toBe(
                 "Cannot translate, enter morse code only."
             );
         });

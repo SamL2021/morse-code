@@ -21,36 +21,29 @@ https: describe("Testing toMorseCode()", () => {
         expect(toMorseCode("6", alphabet)).toBe("-....");
     });
 
-    it("Should accept punctuation such as '!' and return '·-·--'", () => {
-        expect(toMorseCode("!", alphabet)).toBe("-·-·--");
+    it("Should accept punctuation such as '!' and return '.-.--'", () => {
+        expect(toMorseCode("!", alphabet)).toBe("-.-.--");
         expect(toMorseCode(",", alphabet)).toBe("--··--");
     });
 
-    it("Any other character apart from letters and numbers should throw an error 'Not a valid entry'", () => {
-        expect(toMorseCode([], alphabet)).toThrow(
-            "Cannot translate, enter only letters and numbers."
-        );
-        expect(toMorseCode("?", alphabet)).toThrow(
-            "Cannot translate, enter only letters and numbers."
-        );
-        expect(toMorseCode({}, alphabet)).toThrow(
+    it("Any other character apart from letters and numbers should return msg", () => {
+        expect(() => toMorseCode("{}", alphabet)).toThrow(
             "Cannot translate, enter only letters and numbers."
         );
     });
 
     it("Should split morse code with 1 space between characters and seperate words with '/'", () => {
-        expect(
-            toMorseCode("SAMANTHA LIPPIATT", alphabet).toBe(
-                "... .- -- .- -. - .... .- / .-.. .. .--. .--. .. .- - -"
-            )
+        expect(toMorseCode("SAMANTHA LIPPIATT", alphabet)).toBe(
+            "... .- -- .- -. - .... .- / .-.. .. .--. .--. .. .- - -"
         );
+
         expect(toMorseCode("JS IS AWESOME!", alphabet)).toBe(
             ".--- ... / .. ... / .- .-- . ... --- -- . -.-.--"
         );
     });
 
     it("Should not translate an empty string", () => {
-        expect(
+        expect(() =>
             toMorseCode("", alphabet).toThrow(
                 "Cannot translate, enter only letters and numbers."
             )
@@ -68,14 +61,8 @@ https: describe("Testing toMorseCode()", () => {
             expect(toEnglish("....-", morse)).toBe("4");
         });
 
-        it("Any other character apart from letters and numbers should throw an error 'Not a valid entry'", () => {
-            expect(toEnglish([], morse)).toThrow(
-                "Cannot translate, enter morse code only."
-            );
-            expect(toEnglish("?", morse)).toThrow(
-                "Cannot translate, enter morse code only."
-            );
-            expect(toEnglish({}, morse)).toThrow(
+        it("Should only accept morse code'", () => {
+            expect(() => toEnglish("S", morse)).toThrow(
                 "Cannot translate, enter morse code only."
             );
         });
@@ -91,12 +78,12 @@ https: describe("Testing toMorseCode()", () => {
                 toEnglish(
                     ".--- ... / .. ... / .- .-- . ... --- -- . -.-.--",
                     morse
-                ).toBe("JS IS AWESOME!")
-            );
+                )
+            ).toBe("JS IS AWESOME!");
         });
 
         it("Not translate an empty string'", () => {
-            expect(toEnglish("", morse)).toThrow(
+            expect(toEnglish("", morse)).toBe(
                 "Cannot translate, enter morse code only."
             );
         });
